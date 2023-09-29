@@ -1,0 +1,101 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.108.0">
+    <title>Home</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/navbar-fixed/">
+
+  
+    <link href ="{% static 'js/jquery-ui-1.13.2/jquery-ui.min.css' %}" rel="stylesheet">
+    <link href ="{% static 'js/jquery-ui-1.13.2/jquery-ui.structure.min.css' %}" rel="stylesheet">
+    <link href ="{% static 'js/jquery-ui-1.13.2/jquery-ui.theme.min.css' %}" rel="stylesheet">
+    
+    <script src ="{% static 'js/jquery-3.6.4.min.js' %}"></script>
+    <script src ="{% static 'js/jquery-ui-1.13.2/jquery-ui.min.js' %}"></script>
+    <script src ="{% static 'js/myjs.js' %}"></script>
+
+
+    <link href="{% static 'css/stylesheet.css' %}" rel="stylesheet">
+    <script src="{% static 'css/bootstrap.bundle.min.js' %}"></script>
+    <link href = "{% static 'css/bootstrap.min.css' %}" rel = "stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  </head>
+
+  
+  <body>
+          {% include "navbar.html"%}
+          <main class="container">
+            {% if messages %}
+                  <u1 class = "messages">
+                         {% for message in messages %}
+                                   <li {% if message.tags %} class = "{{message.tags}}"{% endif  %}> {{ message }} </li>
+                            {% endfor %}
+                  </u1>
+              {% endif %}
+            <div class="bg-light p-5 rounded">
+              <div class="header">{{Header}}</div>
+             <div class ='row'>
+             <div class ='col-sm-2'>
+              <form method ='POST' action=''> 
+                {%csrf_token%}
+                {{form|crispy}}
+                <input class = 'btn btn-primary mybutton'type="submit" value='Search'/>
+              </form>
+            </div>
+            <div class ='col-sm-10'>
+              <br>
+            <div class="display_table">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>COUNT</th>
+                    <th>ID</th>
+                    <th>CATAGORY</th>
+                    <th>ITEM NAME</th>
+                    <th>QUANTITY IN STORE</th>
+                    <th>ISSUE QUANTITY</th>
+                    <th>RECEIVE QUANTITY</th>
+                    <th>RECEIVE BY</th>
+                    <th>ISSUE BY</th>
+                    <th>LAST UPDATED</th>
+                  </tr>
+                </thead>
+                  {% for instance in queryset %}
+                    <tr>
+                      <td>{{forloop.counter}}</td>
+                      <td>{{instance.id}}</td>
+                      <td>{{instance.catagory}}</td>
+                      <td>{{instance.item_name}}</td>
+                      <td>{{instance.quantity}}</td>
+                      <td>{{instance.issue_quantity}}</td>
+                      <td>{{instance.receive_quantity}}</td>
+                      <td>{{instance.receive_by}}</td>
+                      <td>{{instance.issue_to}}</td>
+                      <td>{{instance.last_updated}}</td>
+                    </tr>
+                  {% endfor %}
+              </table>
+            </div>
+          </div>
+        </div><!--end of the row-->
+      </div>
+          </main>
+          <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+          <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
